@@ -33,15 +33,15 @@ High-level pipeline:
   application of learned maps to new predictions.
 
 ## Fairness definition: Demographic Parity
-Let S be a sensitive attribute, X non-sensitive features, and the prediction be
-Y_hat = g(X, S) (possibly randomized). Demographic Parity (DP) requires that the
+Let $S$ be a sensitive attribute, $X$ non-sensitive features, and the prediction be
+$Y$ (possibly randomized). Demographic Parity (DP) requires that the
 distribution of predictions does not depend on S:
 
-For all s, s' in S and all t in R:
-P(Y_hat <= t | S = s) = P(Y_hat <= t | S = s').
+For all $s, s' \in S$ and all $t \in R$:
+$$ P(Y \leq t | S = s) = P(Y \leq t | S = s'). $$
 
 For binary classification, this reduces to:
-P(Y_hat = 1 | S = s) = P(Y_hat = 1 | S = s') for all s, s'.
+$$ P(Y = 1 | S = s) = P(Y_hat = 1 | S = s') \quad \text{for all} \,\, s, s'. $$
 
 ## Empirical Risk Minimization (ERM)
 Let D = {(x_i, s_i, y_i)}_{i=1}^n be the dataset.
