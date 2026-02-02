@@ -34,27 +34,35 @@ High-level pipeline:
 
 ## Fairness definition: Demographic Parity
 Let $S$ be a sensitive attribute, $X$ non-sensitive features, and the prediction be
-$Y$ (possibly randomized). Demographic Parity (DP) requires that the
+$\hat{Y}$ (possibly randomized). Demographic Parity (DP) requires that the
 distribution of predictions does not depend on S:
 
 For all $s, s' \in S$ and all $t \in R$:
-$$ P(Y \leq t | S = s) = P(Y \leq t | S = s'). $$
+```math
+P(\hat{Y} \leq t | S = s) = P(\hat{Y} \leq t | S = s').
+```
 
 For binary classification, this reduces to:
-$$ P(Y = 1 | S = s) = P(Y_hat = 1 | S = s') \quad \text{for all} \,\, s, s'. $$
+```math
+P(\hat{Y} = 1 | S = s) = P(\hat{Y} = 1 | S = s') \quad \text{for all} \,\, s, s'.
+```
 
 ## Empirical Risk Minimization (ERM)
-Let D = {(x_i, s_i, y_i)}_{i=1}^n be the dataset.
+Let $D = {(x_i, s_i, y_i)}_{i=1}^n$ be the dataset.
 
 Classification ERM (score function f; 0-1 or log loss):
-min_f (1/n) * sum_{i=1}^n L(y_i, f(x_i))
-with a classifier y_hat_i = 1{f(x_i) >= 1/2} when f outputs probabilities.
+```math
+\min_f \frac1n \sum_{i=1}^n L(y_i, f(x_i))
+```
+with a classifier $\hat{y}_i = 1_{f(x_i) >= 1/2}$ when $f$ outputs probabilities.
 
 Regression ERM (squared loss):
-min_f (1/n) * sum_{i=1}^n (y_i - f(x_i))^2.
+```math
+\min_f \frac1n \sum_{i=1}^n (y_i - f(x_i))^2.
+```
 
 Fairness can be enforced by adding a constraint (e.g., DP) or by post-processing
-f(x_i) to equalize group-conditional prediction distributions.
+$f(x_i)$ to equalize group-conditional prediction distributions.
 
 ## Papers followed (short comments)
 - Chzhen et al., "Fair Regression with Wasserstein Barycenters" (arXiv:2006.07286):
